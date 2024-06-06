@@ -9,19 +9,17 @@ function MessageBoard() {
   const handleInputMessage = (event) => {
     setInputMessage(event.target.value);
   };
-  const handleSummitButton = (event) => {
-    const newMessages = [...messageBoard];
+  const handleSummitButton = () => {
     if (inputMessage) {
-      newMessages.push(inputMessage);
-      setMessageBoard(newMessages);
+      setMessageBoard([...messageBoard, inputMessage]);
       setInputMessage("");
-      event.target.reset;
     }
   };
 
   const handleDeleteButton = (messageIndex) => {
-    const newMessages = [...messageBoard];
-    newMessages.splice(messageIndex, 1);
+    const newMessages = messageBoard.filter(
+      (_, index) => index !== messageIndex
+    );
     setMessageBoard(newMessages);
   };
 
